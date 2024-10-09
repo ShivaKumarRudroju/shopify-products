@@ -1,0 +1,72 @@
+<div>
+  <center><h1>{{ section.settings.text-1 }}</h1></center>
+  <div>
+    <ul class="slider-row">
+    {% for product in collections[section.settings.feature_collection].products  %}  
+          <li class="card">
+            <a href={{ product.url }}>
+            <img src="{{ product.featured_image | image_url:master }}" class="product-image"/>
+            </a>
+            <h3 class="title">{{ product.title }}</h3>
+            <h3>${{ product.price }}</h3>
+          </li>
+    {% endfor %}
+      </ul>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "collections",
+    "settings": [{
+      "type": "text",
+      "id": "text-1",
+      "label": "Enter the text"
+      
+    },
+    {
+      "type": "collection",
+      "id": "feature_collection",
+      "label": "Pick the collection"
+    }],
+    "presets": [{
+      "name": "collections-slider"
+    }]
+  }
+{% endschema %}
+
+<script>
+  $('.slider-row').slick({
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+});
+</script>
+
+{% stylesheet %}
+  .product-image{
+    height:40%;
+    width:100%;
+  }
+  .slider-row{
+    display:flex;
+  }
+  .card{
+    height:400px;
+    width:33%;
+    margin:10px;
+    border:solid #91918e 1px;
+    padding:3px;
+    }
+  .title{
+    min-height: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin:0px !important;
+  }
+  
+{% endstylesheet %}
