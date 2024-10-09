@@ -22,7 +22,6 @@
       "type": "text",
       "id": "text-1",
       "label": "Enter the text"
-      
     },
     {
       "type": "collection",
